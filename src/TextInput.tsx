@@ -13,14 +13,14 @@ export interface TextInputOptions
 
 export class TextInput extends Component<TextInputOptions> 
 {
-    state = { value: this.props.value, focus: false };
+    state = { value: this.props.value, focus: this.props.autofocus };
 
     render()
     {
         let attrs = {} as any;
         if ( this.props.autofocus )
             attrs.autoFocus = true;
-        if ( this.props.onEnter )
+        if ( this.props.onEnter )   
             attrs.onKeyDown = e =>
             {
                 if ( e.keyCode === 13 )
@@ -45,10 +45,5 @@ export class TextInput extends Component<TextInputOptions>
                 </label>
             </div> 
         );
-    }
-    
-    componentWillReceiveProps(props)
-    {
-        props.value ?? this.setState({ value: props.value });
     }
 }

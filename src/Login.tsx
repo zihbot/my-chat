@@ -22,18 +22,24 @@ export class Login extends Component<LoginOptions>
             { this.state.register &&
                 <TextInput type="text" placeholder="Display Name (Agent Smith)" 
                     value={ this.state.displayName }
-                    onChange={ e => this.setState( { displayName: e } ) } /> 
+                    onChange={ e => this.setState( { displayName: e } ) } 
+                    autofocus={ true } 
+                    onEnter={ () => this.onClick() } 
+                    key={ this.state.displayName } /> 
             }
             <TextInput type="email" placeholder="Email (someone@example.com)" 
                 value={ this.state.email }
                 onChange={ e => 
                 { 
-                    if (e == "H4O0I6") { this.setState( { displayName: "Botond" }); this.forceUpdate(); } 
+                    if (e == "H4O0I6") { this.setState( { displayName: "Botond" } ); } 
                     this.setState( { email: e } ) 
-                }} />
+                }}
+                autofocus={ !this.state.register } 
+                onEnter={ () => this.onClick() } />
             <TextInput type="password" placeholder="Password" 
                 value={ this.state.password }
-                onChange={ e => this.setState( { password: e } ) } />
+                onChange={ e => this.setState( { password: e } ) } 
+                onEnter={ () => this.onClick() } />
             <button type="button" onClick={ () => this.onClick() }>
                 { this.state.register ? "Register" : "Login" }
             </button>
